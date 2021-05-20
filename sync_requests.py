@@ -22,7 +22,7 @@ def sync_get_many(arg):
         requests.get(URL)  # response not needed
 
     dt = time.perf_counter() - start
-    print("get {} sites in {:.4f} seconds".format(n, dt))
+    print("get {} sites in {:.2f} seconds".format(n, dt))
     return 0
 
 

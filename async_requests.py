@@ -25,7 +25,7 @@ async def async_get_many(arg):
         await asyncio.gather(*[aio_get_request(ses, URL) for _ in range(n)])
     dt = time.perf_counter() - start
 
-    print("get {} sites in {:.4f} seconds".format(n, dt))
+    print("get {} sites in {:.2f} seconds".format(n, dt))
     return 0
 
 
