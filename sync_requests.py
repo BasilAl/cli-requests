@@ -1,32 +1,30 @@
 import requests
 import sys
 import time
+from cli_argument_restrictions import single_integer
+
+URL = "https://google.gr"
 
 
-def get_many(arg):
+def sync_get_many(arg):
     """
-    Performs a get request <input> amount of times and returns the total times it fetched the site and the amount of time it took to do so.
-    Example use: python3? sync_requests.py 12
+    Performs a (synchronous) get request <input> amount of times and returns the total times it fetched the site and
+    the amount of time it took to do so. Example use: python3? sync_requests.py 12
     """
 
-    if len(arg) != 2:
-        print("Function takes exactly 1 argument which should be a positive integer. Example use: python3? "
-              "sync_requests.py 12")
-        return -1
-    if not arg[1].isdigit():
-        print("Function takes exactly 1 argument which should be a positive integer. Example use: python3? "
-              "sync_requests.py 12")
+    if single_integer(arg):
         return -1
 
     n = int(arg[1])
-    start = time.time()
+    start = time.perf_counter()
 
     for i in range(n):
-        resp = requests.get("https://google.gr")
+        requests.get(URL)  # response not needed
 
-    dt = time.time() - start
+    dt = time.perf_counter() - start
     print("get {} sites in {:.4f} seconds".format(n, dt))
+    return 0
 
 
 if __name__ == "__main__":
-    get_many(sys.argv)
+    sync_get_many(sys.argv)
