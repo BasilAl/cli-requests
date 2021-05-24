@@ -13,10 +13,7 @@ async def async_get_n(n):
     and the amount of time it took to do so. Example use: python3? sync_requests.py 12
     """
 
-    if sys.platform == 'win32':
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    else:
-        asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+
 
     async def aio_get_request(session, url):
         await session.get(url)
@@ -31,11 +28,17 @@ async def async_get_n(n):
 
 
 def main():
+
     n = get_int_arg()
     if n <= 0:
         print("Function takes exactly 1 argument which should be a positive integer. Example use: python3? "
               "sync_requests.py 12")
         return
+
+    if sys.platform == 'win32':
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    else:
+        asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
     asyncio.run(async_get_n(n))
 
 
