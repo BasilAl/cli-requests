@@ -17,4 +17,3 @@ Task requirements:
 >
 > python3? sync_requests.py <amount>
 
-> TODO: Unit Tests - Hopefully later in the day
